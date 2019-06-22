@@ -300,19 +300,19 @@ include "../public/mail/functions.php";
 				}
 
 			}
-			elseif ($user->Active == 2) {
-				$_SESSION['user_name'] = $user->HoTen;
-				$_SESSION['id_user'] = $user->id_User;
-				header('location:c_admin.php?action=update_apriori');
-				if(isset($_SESSION['user_error'])){
-					unset($_SESSION['user_error']);
+			// elseif ($user->Active == 2) {
+			// 	$_SESSION['user_name'] = $user->HoTen;
+			// 	$_SESSION['id_user'] = $user->id_User;
+			// 	header('location:c_admin.php?action=update_apriori');
+			// 	if(isset($_SESSION['user_error'])){
+			// 		unset($_SESSION['user_error']);
 
-				}
-				if(isset($_SESSION['chua_dang_nhap'])) {
-					unset($_SESSION['chua_dang_nhap']);
-				}
+			// 	}
+			// 	if(isset($_SESSION['chua_dang_nhap'])) {
+			// 		unset($_SESSION['chua_dang_nhap']);
+			// 	}
 
-			}
+			// }
 			else{
 				$_SESSION['user_error'] = "Tài Khoản chưa kích hoạt";
 				header('location:c_user.php?action=login');

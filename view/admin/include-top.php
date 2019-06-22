@@ -81,12 +81,12 @@
                 <i class="fas fa-user"></i>  <?php echo $_SESSION['user_name'] ?><b class="caret"></b>
             </a>
             <ul class="dropdown-menu dropdown-user">
-                <li class="icon-dropdown"><a href="#"><i class="fas fa-user"></i> User Profile</a>
+                <li class="icon-dropdown"><a href="#"><i class="fas fa-user"></i>User Profile</a>
                 </li>
                <!--  <li class="icon-dropdown"><a href="#"><i class="fas fa-user-cog"></i> Settings</a>
                 </li> -->
                 <li class="divider"></li>
-                <li class="icon-dropdown"><a href="c_user.php?action=logout"><i class="fas fa-sign-out-alt"></i> Đăng Xuất</a>
+                <li class="icon-dropdown"><a href="c_user.php?action=logout"><i class="fas fa-sign-out-alt"></i>Đăng Xuất</a>
                 </li>
             </ul>
         </li>
