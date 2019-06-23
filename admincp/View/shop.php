@@ -3,7 +3,7 @@
 <?php include"../menu.php"; ?>
     <div id="content-wrapper">
         <div class="container-fluid">
-          <h1>All User</h1>
+          <h1>All Shop</h1>
           <hr>
         </div>
         <div class="container-fluid">
@@ -18,9 +18,10 @@
          <th>Shop</th>
          <th>Email</th>
          <th>Phone</th>
-         <th width="230">Role</th>
+         <th width="230">Setting</th>
       </tr>
       <?php
+      if (isset($users)) {
       	foreach ($users as $value) {
       		?>
       	<tr>
@@ -29,11 +30,29 @@
            <td><?=$value['TenShop'] ?></td>
 			     <td><?=$value['Email'] ?></td>
 			     <td><?=$value['SDT'] ?></td>
-			     <td><?=$value['Active'] ?></td>
+			     <td>
+            <?php 
+              if ($value['Active']==1) {
+                ?>
+                <form method="post" action="c_admin.php?action=Disables&id=<?=$value['id_User']?>">
+                  <button class="btn btn-danger">Disable</button>
+                </form>
+                <?php
+              }
+              elseif($value['Active']==4){
+                ?>
+                <form method="post" action="c_admin.php?action=Enableshs&id=<?=$value['id_User']?>">
+                  <button class="btn btn-success">Enablesh</button>
+                </form>
+                <?php
+              }
+            ?>
+           </td>
 			  </tr>
       		<?php
       	}
-       ?>
+      }
+      ?>
    </table>
 </div>
 

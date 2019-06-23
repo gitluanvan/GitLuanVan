@@ -37,7 +37,6 @@ include 'header.php';
 				<div class="shop_inf_text">
 					<h2><?=$user->TenShop?></h2>
 					<p>100 Lượng theo dõi</p>
-					<p>73% Đánh giá tích cực</p>
 				</div>
 			</div>
 		</div>

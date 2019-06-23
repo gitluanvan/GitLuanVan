@@ -37,7 +37,6 @@ include 'header.php';
 				<div class="shop_inf_text">
 					<h2><?=$user->TenShop?></h2>
 					<p>100 Lượng theo dõi</p>
-					<p>73% Đánh giá tích cực</p>
 				</div>
 			</div>
 		</div>
@@ -101,7 +100,7 @@ include 'header.php';
 		
 				<div class="clear"></div>
 			</div>
-		 <h2 class="head">Sản Phẩm Mới</h2>
+		 <h2 class="head cls-spm">Sản Phẩm Mới</h2>
 		 <div class="top-box">
 		  	<?php 
 		  	foreach ($sanphamnew as $sp) {

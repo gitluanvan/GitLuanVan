@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <!-- Custom fonts for this template-->
     <link href="../public/admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    
+    <!-- <link rel="stylesheet" type="text/css" href="../public/admin/css/material-dashboard.css"> -->
     <!-- Page level plugin CSS-->
     <link href="../public/admin/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
     <link href="../public/css/home_admin.css" rel="stylesheet">

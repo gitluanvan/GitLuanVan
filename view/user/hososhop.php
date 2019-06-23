@@ -36,8 +36,7 @@ include 'header.php';
 				</div>
 				<div class="shop_inf_text">
 					<h2><?=$user->TenShop?></h2>
-					<p>100 Lượng theo dõi</p>
-					<p>73% Đánh giá tích cực</p>
+					<p>100 Lượng theo dõi</p>	
 				</div>
 			</div>
 		</div>
@@ -47,10 +46,10 @@ include 'header.php';
 				<li><a href="c_shop.php?action=sanpham&shop=<?=$id_user?>">Tất Cả Sản Phẩm</a></li>
 				<li><a class="active" href="c_shop.php?action=hoso&shop=<?=$id_user?>">Hồ Sơ</a></li>
 			</ul>
-			<form method="POST">
+			<!-- <form method="POST">
 				<button type="submit" name="submit">Tìm</button>
 				<input type="text" name="timkiem">
-			</form>
+			</form> -->
 
 		</div>
 	</div>

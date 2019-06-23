@@ -12,13 +12,13 @@
 	}
 	switch ($action) {
 		case 'user': {
-			$sql="SELECT * FROM users WHERE Active=0";
+			$sql="SELECT * FROM users WHERE Active in (0,3)	";
 			$users=$db->getAllData($sql);			
 			require_once('../View/user.php');
 			break;
 		}
 		case 'shop': {
-			$sql="SELECT * FROM users WHERE Active=1";
+			$sql="SELECT * FROM users WHERE Active in (1,4)";
 			$users=$db->getAllData($sql);			
 			require_once('../View/shop.php');
 			break;
@@ -209,6 +209,46 @@
 					}
 				}
 			}
+			break;
+		}
+		case 'Disable':{
+			$id=$_GET['id'];
+			$sql="UPDATE users SET Active=3 WHERE id_User='$id'";
+			$enable=$db->querysql($sql);
+			echo ("<script LANGUAGE='JavaScript'>
+		    window.alert('Người dùng này đã bị cấm !');
+		    window.location.href='c_admin.php?action=user';
+		    </script>");
+			break;
+		}
+		case 'Enablesh':{
+			$id=$_GET['id'];
+			$sql="UPDATE users SET Active=0 WHERE id_User='$id'";
+			$enable=$db->querysql($sql);
+			echo ("<script LANGUAGE='JavaScript'>
+		    window.alert('Đã hủy cấm người dùng này !');
+		    window.location.href='c_admin.php?action=user';
+		    </script>");
+			break;
+		}
+		case 'Disables':{
+			$id=$_GET['id'];
+			$sql="UPDATE users SET Active=4 WHERE id_User='$id'";
+			$enable=$db->querysql($sql);
+			echo ("<script LANGUAGE='JavaScript'>
+		    window.alert('Người dùng này đã bị cấm !');
+		    window.location.href='c_admin.php?action=shop';
+		    </script>");
+			break;
+		}
+		case 'Enableshs':{
+			$id=$_GET['id'];
+			$sql="UPDATE users SET Active=1 WHERE id_User='$id'";
+			$enable=$db->querysql($sql);
+			echo ("<script LANGUAGE='JavaScript'>
+		    window.alert('Đã hủy cấm người dùng này !');
+		    window.location.href='c_admin.php?action=shop';
+		    </script>");
 			break;
 		}
 	}
