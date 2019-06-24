@@ -480,67 +480,40 @@ include 'header.php';
 			<div class="border">   
 		    <div class="slider-wrapper theme-default">
               <div id="slider" class="nivoSlider">
-                <!-- <img src="../public/images/t-img1.jpg"  alt="" />
-               	<img src="../public/images/t-img2.jpg"  alt="" />
-                <img src="../public/images/t-img3.jpg"  alt="" /> -->
-	                <a href="c_sanpham.php?action=chitiet&id_sanpham=<?=$banchay->id_SanPham?>">
-						 <div class="inner_content clearfix">
-							<div class="product_image">
-								<img src="../public/images/sanpham/71292838.jpg" alt=""/>
-							</div>
-		                   	<!--  <div class="sale-box sale-box-banchay"><span class="on_sale title_shop">Bán Chạy</span></div> -->
-		                    <div class="price">
-		                    	<div class="cart-left">
-		                    		<div class="title-div">
-										<p class="title">TAI NGHE CHUYÊN GAME EACH G2000</p>
-									</div>
-									<div class="price1">
-										  <span class="actual">450.000đ</span>
-									</div>
-		                    	</div>
-								<div class="clear"></div>
-							 </div>				
-		                   </div>
-	                </a>
-	                <a href="#">
-						 <div class="inner_content clearfix">
-							<div class="product_image">
-								<img src="../public/images/sanpham/Samsung-B-P1100-10.000mAh-Micro-USB.jpg" alt=""/>
-							</div>
-		                   	<!--  <div class="sale-box sale-box-banchay"><span class="on_sale title_shop">Bán Chạy</span></div> -->
-		                    <div class="price">
-		                    	<div class="cart-left">
-		                    		<div class="title-div">
-										<p class="title">PIN SẠC DỰ PHÒNG SAMSUNG EB-P1100 10.000MAH MICRO-USB</p>
-									</div>
-									<div class="price1">
-										  <span class="actual">359.000đ</span>
-									</div>
-		                    	</div>
-								<div class="clear"></div>
-							 </div>				
-		                   </div>
-	                </a>
-	                <a href="c_sanpham.php?action=chitiet&id_sanpham=<?=$banchay->id_SanPham?>">
-						 <div class="inner_content clearfix">
-							<div class="product_image">
-								<img src="../public/images/sanpham/EarphoneLangsdomJM26SuperBass.jpg" alt=""/>
-							</div>
-		                   	<!--  <div class="sale-box sale-box-banchay"><span class="on_sale title_shop">Bán Chạy</span></div> -->
-		                    <div class="price">
-		                    	<div class="cart-left">
-		                    		<div class="title-div">
-										<p class="title">TAI NGHE NHÉT TAI EARPHONE LANGSDOM JM26 SUPER BASS (ĐEN)</p>
-									</div>
-									<div class="price1">
-										  <span class="actual">55.000đ</span>
-									</div>
-		                    	</div>
-								<div class="clear"></div>
-							 </div>				
-		                   </div>
-	                </a>
-                	
+               
+                    <?php 
+		              	foreach ($goiyluatkethop as $goiy) {
+			              		foreach ($goiy as $value) {
+			              			 $gia = $value->Gia;
+			              			 $money = formatMoney($gia);
+			              			?>
+						              <a href="c_sanpham.php?action=chitiet&id_sanpham=<?=$value->id_SanPham?>">
+											 <div class="inner_content clearfix">
+												<div class="product_image">
+													<img src="../public/images/sanpham/<?=$value->Hinh?>" alt=""/>
+												</div>
+							                   	<!--  <div class="sale-box sale-box-banchay"><span class="on_sale title_shop">Bán Chạy</span></div> -->
+							                    <div class="price">
+							                    	<div class="cart-left">
+							                    		<div class="title-div">
+															<p class="title"><?=$value->TenSanPham?></p>
+														</div>
+														<div class="price1">
+															  <span class="actual"><?=$money?>đ</span>
+														</div>
+							                    	</div>
+													<div class="clear"></div>
+												 </div>				
+							                 </div>
+							             </a>
+			              			<?php
+			              		}
+		              		?>
+		              		 
+		              		<?php
+		              	}
+		               ?>
+			               	
               
               	</div>
              </div>

@@ -34,7 +34,7 @@ include "../public/mail/functions.php";
 					$lastid = $m_user->getIdUser();
 					$id_user = $lastid->LastID;
 					$title = 'Kích Hoạt Tài Khoản';
-					$content = 'Vui lòng nhấp vào đường link này :http://localhost/shopmultisellerv1/controller/c_user.php?action=active&id='.$id_user.'&ma='.$ma.' ,để kích hoạt tài khoản Shop TK';
+					$content = 'Vui lòng nhấp vào đường link này :http://localhost/GitLuanVan/controller/c_user.php?action=active&id='.$id_user.'&ma='.$ma.' ,để kích hoạt tài khoản Shop TK';
 					$nTo = $hoten;
 					$mTo = $email;
 					$diachi = $email;
@@ -162,7 +162,7 @@ include "../public/mail/functions.php";
 						
 						$user_forget = $m_user->updateMa($email,$ma);
 						$title = 'Lấy Lại Mật Khẩu';
-						$content = 'Chào '.$user->HoTen.', để lấy lại mật khẩu vui lòng lick vào đường link này : http://localhost/shopmultisellerv1/controller/c_user.php?action=laylaipass&id='.$user->id_User.'&ma='.$ma;
+						$content = 'Chào '.$user->HoTen.', để lấy lại mật khẩu vui lòng lick vào đường link này : http://localhost/GitLuanVan/controller/c_user.php?action=laylaipass&id='.$user->id_User.'&ma='.$ma;
 						$nTo = $user->HoTen;
 						$mTo = $email;
 						$diachi = $email;

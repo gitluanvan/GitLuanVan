@@ -25,19 +25,7 @@ include_once("../Model/m_admin.php");
 
 	// }
 
-	//tìm kiếm sản phẩm
-	if (isset($_POST['submit'])) {
-		$key = $_POST['timkiem'];
-		$sanpham = $m_shop->TimKiem($key,$id_user);
-		$trang_hientai =(isset($_GET['page']))?$_GET['page']:1;
-		$pagination = new pagination(count($sanpham),$trang_hientai,10,2);
-		$paginationHTML = $pagination->showPagination();
-		$limit = $pagination->_nItemOnPage;
-		$vitri = ($trang_hientai-1)*$limit;
-		$sanpham =$m_shop->TimKiem($key,$id_user,$vitri,$limit);
-		require_once('../view/user/sanphamshop.php');
-	}
-
+	
 	switch ($action) {
 		case 'shop':{
 			$sanphamhot = $m_shop->getSanPhamHT($id_user);
@@ -60,6 +48,22 @@ include_once("../Model/m_admin.php");
 		case 'hoso':{
 			
 			require_once('../view/user/hososhop.php');
+			break;
+		}
+		case 'timkiem':{
+			//tìm kiếm sản phẩm
+			if (isset($_POST['submit'])) {
+				$key = $_POST['timkiem'];
+				$sanpham = $m_shop->TimKiem($key,$id_user);
+				$trang_hientai =(isset($_GET['page']))?$_GET['page']:1;
+				$pagination = new pagination(count($sanpham),$trang_hientai,10,2);
+				$paginationHTML = $pagination->showPagination();
+				$limit = $pagination->_nItemOnPage;
+				$vitri = ($trang_hientai-1)*$limit;
+				$sanpham =$m_shop->TimKiem($key,$id_user,$vitri,$limit);
+				require_once('../view/user/sanphamshop.php');
+			}
+
 			break;
 		}
 			

@@ -7,6 +7,14 @@ include '../model/m_sanpham.php';
 include_once ('../model/pagerindex.php');
 include_once ('../model/pager.php');
 session_start();
+
+if (isset($_GET['action'])) {
+		$action=$_GET['action'];
+	}
+	else
+	{
+		$action='';
+	}
 $m_sanpham = new M_sanpham();
 $thietbidientu = $m_sanpham->getDMThietBiDienTu();
 $phukiendientu = $m_sanpham->getDMPhuKienDienTu();
@@ -31,24 +39,12 @@ unset($_SESSION['error_khongtontai']);
 unset($_SESSION['error_dangky']);
 unset($_SESSION['user_error']);
 
-if (isset($_POST['submit'])) {
-	$key = $_POST['timkiem'];
-	$sanpham = $m_sanpham->TimKiem($key);
-	$trang_hientai =(isset($_GET['page']))?$_GET['page']:1;
-	$pagination = new pagination(count($sanpham),$trang_hientai,9,2);
-	$paginationHTML = $pagination->showPagination();
-	$limit = $pagination->_nItemOnPage;
-	$vitri = ($trang_hientai-1)*$limit;
-	$sanpham =$m_sanpham->TimKiem($key,$vitri,$limit);
-	require_once('../view/user/timkiem.php');
-}
 
 
 if (isset($_SESSION['id_user'])) {
 	$thongtinuser = $m_sanpham->getUser($_SESSION['id_user']);
 
 }
-require_once '../view/user/index.php';
 		
 
 //format kiểu tiền tệ
@@ -68,6 +64,26 @@ require_once '../view/user/index.php';
 	}
 
 
+
+switch ($action) {
+		case 'timkiem':{
+			if (isset($_POST['submit'])) {
+			$key = $_POST['timkiem'];
+			$sanpham = $m_sanpham->TimKiem($key);
+			$trang_hientai =(isset($_GET['page']))?$_GET['page']:1;
+			$pagination = new pagination(count($sanpham),$trang_hientai,9,2);
+			$paginationHTML = $pagination->showPagination();
+			$limit = $pagination->_nItemOnPage;
+			$vitri = ($trang_hientai-1)*$limit;
+			$sanpham =$m_sanpham->TimKiem($key,$vitri,$limit);
+			require_once('../view/user/timkiem.php');
+		}
+			break;
+		}
+		default:{
+			require_once '../view/user/index.php';
+		}
+	}
 	
 
 // }

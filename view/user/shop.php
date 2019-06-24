@@ -46,7 +46,7 @@ include 'header.php';
 				<li><a href="c_shop.php?action=sanpham&shop=<?=$id_user?>">Tất Cả Sản Phẩm</a></li>
 				<li><a href="c_shop.php?action=hoso&shop=<?=$id_user?>">Hồ Sơ</a></li>
 			</ul>
-			<form method="POST">
+			<form method="POST" action="c_shop.php?action=timkiem&shop=<?=$id_user?>">
 				<button type="submit" name="submit">Tìm</button>
 				<input type="text" name="timkiem">
 			</form>

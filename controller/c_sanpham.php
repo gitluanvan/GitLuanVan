@@ -2,7 +2,7 @@
 include_once ('../model/pager.php');
 include_once ('../model/pager1.php');
 include '../model/m_sanpham.php';
-include_once("../Model/m_admin.php");
+include_once("../model/m_admin.php");
 	$db=new Databasee;
 	$db->connect();
 session_start();
@@ -67,6 +67,56 @@ if (isset($_GET['action'])) {
 			$limit1 = $pagination1->_nItemOnPage;
 			$vitri1 = ($trang_hientai1-1)*$limit1;
 			$danhgia = $m_sanpham->getDanhGia($id_sanpham,$vitri1, $limit1);
+
+				$sql="SELECT * FROM `luatkethop` WHERE id_Sp='$id_sanpham'";
+				$listfilter =$db->getAllHistory($sql);
+				
+			// // gợi ý theo luật kết hợp
+			// $luatkethop = $m_sanpham->LuatKetHop($chitietsanpham->id_ChiTietLoai);
+			if (isset($listfilter)) {
+				$length=0;
+				foreach ($listfilter as  $value) {
+				 	$ars_filter[]=$value['Array_LKH'];
+				 	$length++;
+				}
+				$key=0;
+				foreach ($ars_filter as  $value) {
+					$ar_filter=explode(',', $value);
+					$count=count($ar_filter);
+					$key=$key+$count;
+				}
+				if ($key>$length) {
+					foreach ($listfilter as  $value) {
+						$arsr_filter[]=$value['Array_LKH'];
+					}
+					foreach ($arsr_filter as  $value) {
+						$ar_filter=explode(',', $value);
+						$count=count($ar_filter);
+						if ($count>=2) {
+							$filter[]=$value;
+						}
+					}
+					$filter=explode(',', $filter[0]);
+				}
+				else {
+					$sql1="SELECT * FROM `luatkethop` WHERE id_Sp='$id_sanpham' ORDER BY `luatkethop`.`id` DESC";
+					$listfilter1= $db->getAllHistory($sql1);
+					foreach ($listfilter1 as  $value) {
+						$filter[]=$value['Array_LKH'];
+					}
+				}
+				
+				$goiyluatkethop = array();
+				foreach ($filter as $value) {
+					$arr = $m_sanpham->getSanPhamByLKH($value);
+					array_push($goiyluatkethop, $arr);
+				}
+			}else{
+				$goiyluatkethop = array();
+				$ar = $m_sanpham->getSanPhamGoiY();
+				array_push($goiyluatkethop, $ar);
+			}
+
 			//Bình luận
 			if (isset($_POST['datcauhoi'])) {
 				$id_user = $_SESSION['id_user'];

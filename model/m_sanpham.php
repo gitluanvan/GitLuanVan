@@ -228,6 +228,19 @@ class M_sanpham extends database
 		$this->setQuery($sql);
 		return $this->loadAllRows();
 	}
+	//gợi ý luật kết hợp
+	//Gợi ý luật kết hợp
+	function LuatKetHop($id_chitietloai){
+		$sql = "SELECT * FROM luatkethop WHERE id_Sp = $id_chitietloai";
+			$this->setQuery($sql);
+			return $this->loadRow(array($id_chitietloai));
+		}
+
+	function getSanPhamByLKH($id_chitietloai){
+		$sql = "SELECT sanpham.* , COUNT(sanpham.id_SanPham) as dem FROM sanpham LEFT JOIN chitietdonhang ON sanpham.id_SanPham = chitietdonhang.id_sp WHERE sanpham.id_ChiTietLoai = $id_chitietloai GROUP BY sanpham.id_SanPham ORDER BY dem DESC LIMIT 3";
+			$this->setQuery($sql);
+			return $this->loadAllRows();
+	}
 
 }
 

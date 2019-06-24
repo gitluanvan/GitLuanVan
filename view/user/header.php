@@ -194,7 +194,7 @@
 		<!--End Main <menu--></menu-->
 	   <div class="header-bottom-right">
          <div class="search">
-         	<form method="POST">
+         	<form method="POST" action="c_index.php?action=timkiem">
          		<input type="text" name="timkiem" class="textbox" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}">
 				<input type="submit" value="Subscribe" id="submit" name="submit">
 				<div id="response"> </div>

@@ -5,7 +5,6 @@
 	include('../public/mail/class.smtp.php');
 	include "../public/mail/class.phpmailer.php"; 
 	include "../public/mail/functions.php"; 
-	include '../Model/apriori.php';
 	$db=new Databasee;
 	$db->connect();
 	if (isset($_GET['action'])) {
@@ -314,21 +313,35 @@
 				$dataID=$db->UpdateStatusOrder($_GET['id'],$_POST['status'],$tblTable);
 				
 				if ($status1 =='Đã Xác Nhận') {
-					$donhang=$db->getDongHang($_GET['id']);
-					$id_khachhang = $donhang['id_User'];
-					$khachhang = $db->getThongTinKH($id_khachhang);
-					foreach ($khachhang as $value) {
-						$email = $value['Email'];
-						$hoten = $value['HoTen'];
-					}
-					$test = 'Có có';
-					$title = 'Đặt Hàng Thành Công';
-					$content = 'Đặt Hàng Thành Công';
-					$nTo = $hoten;
-					$mTo = $email;
-					$diachi = $email;
-					$mail = sendMail($title, $content, $nTo, $mTo,$diachicc='');
+					$title = 'Đặt Hàng Thành Công #'.$_GET['id'];
+					$content = 'Bạn đã đặt hàng thành công. Đơn hàng có mã là #'.$_GET['id'].' Vui lòng truy cập vào trang web để kiểm tra.';
+				}else if ($status1 =='Đang Đóng Gói'){
+					$title = 'Đặt Hàng Thành Công #'.$_GET['id'];
+					$content = 'Đơn hàng #'.$_GET['id'].' của bạn đang được đóng gói';
+				}else if ($status1 =='Đang Vận Chuyển') {
+					$title = 'Đặt Hàng Thành Công #'.$_GET['id'];
+					$content = 'Đơn hàng #'.$_GET['id'].' của bạn đã được đóng gói xong và đang được vận chuyển tới bộ phận giao hàng';
+				}else if ($status1 =='Đang Giao Hàng') {
+					$title = 'Đặt Hàng Thành Công #'.$_GET['id'];
+					$content = 'Đơn hàng #'.$_GET['id'].' của bạn đang được giao';
+				}else if ($status1 =='Đã Giao Hàng') {
+					$title = 'Đặt Hàng Thành Công #'.$_GET['id'];
+					$content = 'Đơn hàng #'.$_GET['id'].' của bạn đã được giao thành công bạn có thể truy cập vào trang web để đánh giá dịch vụ';
+				}else if ($status1 =='Từ Chối') {
+					$title ='Hủy đơn hàng #'.$_GET['id'];
+					$content ='Đơn hàng #'.$_GET['id'].' của bạn đã được hủy';
 				}
+				$donhang=$db->getDongHang($_GET['id']);
+				$id_khachhang = $donhang['id_User'];
+				$khachhang = $db->getThongTinKH($id_khachhang);
+				foreach ($khachhang as $value) {
+					$email = $value['Email'];
+					$hoten = $value['HoTen'];
+				}
+				$nTo = $hoten;
+				$mTo = $email;
+				$diachi = $email;
+				$mail = sendMail($title, $content, $nTo, $mTo,$diachicc='');
 			}
 			$status=$_POST['status'];
 			require_once('../View/admin/status.php');

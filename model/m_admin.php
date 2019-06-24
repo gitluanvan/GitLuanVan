@@ -173,7 +173,7 @@
 		//getdata order admin
 		public function getDataOrderAdmin($table,$key,$trangthai){
 			// $sql="SELECT * FROM $table";
-			$sql="SELECT * FROM $table  WHERE id_shop in ($key) and Status='$trangthai' ";
+			$sql="SELECT * FROM $table  WHERE id_shop in ($key) and Status='$trangthai' ORDER BY id DESC ";
 			$this->execute($sql);
 			if($this->num_rows()==0){
 				$data=array();
@@ -285,7 +285,7 @@
 		//getdonhang
 		public function getOrderUser($table,$id_User){
 			// $sql="SELECT * FROM $table";
-			$sql="SELECT * FROM $table  WHERE id_User = '$id_User' and Status!='Đã Hủy'";
+			$sql="SELECT * FROM $table  WHERE id_User = '$id_User' and Status!='Đã Hủy' ORDER BY id DESC";
 			$this->execute($sql);
 			if($this->num_rows()==0){
 				$data=null;
@@ -443,6 +443,8 @@
 			$sql="UPDATE users SET TenShop='$tenshop', DiaChi = '$diachi', SDT = '$sdt', Avatar = '$avatar', AnhBia = '$anhbia', Banner = '$banner' WHERE id_User ='$id_user' ";
 			return $this->execute($sql);
 		}
+
+		
 
 	}
 ?>
